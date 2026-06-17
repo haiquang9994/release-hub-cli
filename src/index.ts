@@ -118,8 +118,9 @@ program
     }
     
     console.log(`\nTo complete authentication:`);
-    console.log(`1. Open the dashboard in your browser: \x1b[36m${serverUrl}\x1b[0m`);
-    console.log(`2. Log in and copy your "CLI Access Token" from the sidebar.`);
+    console.log(`1. Open this link in your browser to generate a new token:`);
+    console.log(`   \x1b[36m${serverUrl}/generate-token.html\x1b[0m`);
+    console.log(`2. Log in (if prompted), then copy and paste the generated token below.`);
     
     const token = await askQuestion('\nPaste your CLI Access Token: ');
     if (!token) {
@@ -141,6 +142,7 @@ program
       
       writeConfig({ serverUrl, token });
       console.log(`Credentials saved to ${CONFIG_PATH}`);
+      process.exit(0);
     } catch (error: any) {
       console.error('\n\x1b[31mAuthentication failed.\x1b[0m');
       if (error.response) {
