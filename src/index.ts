@@ -98,14 +98,14 @@ program
 program
   .command('login')
   .description('Configure ReleaseHub server credentials')
-  .option('-s, --server <url>', 'Server URL (e.g. http://localhost:4000)')
+  .option('-s, --server <url>', 'Server URL (e.g. https://release-hub.example.com)')
   .action(async (options) => {
     const config = readConfig();
     let serverUrl = options.server || config.serverUrl;
     
     if (!serverUrl) {
       console.log('No server URL configured.');
-      serverUrl = await askQuestion('Enter ReleaseHub server URL (e.g., http://localhost:4000): ');
+      serverUrl = await askQuestion('Enter ReleaseHub server URL (e.g., https://release-hub.example.com): ');
       if (!serverUrl) {
         console.error('Error: Server URL is required.');
         process.exit(1);
